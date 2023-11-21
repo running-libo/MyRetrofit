@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.example.retrofit'
-    compileSdk 32
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.retrofit"
         minSdk 21
-        targetSdk 32
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 

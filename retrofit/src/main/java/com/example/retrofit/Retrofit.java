@@ -1,15 +1,14 @@
 package com.example.retrofit;
 
-import static com.example.retrofit.Utils.getRawType;
+import com.example.retrofit.http.GET;
+import com.example.retrofit.http.POST;
 
-import com.google.gson.Gson;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.lang.reflect.Type;
 import okhttp3.Call;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -63,9 +62,6 @@ public class Retrofit {
                 .build();
         return mOkHttpClient.newCall(request);
     }
-
-    private Gson gson = new Gson();
-    private static final MediaType MEDIA_TYPE = MediaType.get("application/json; charset=UTF-8");
 
     /**
      * Post请求处理
