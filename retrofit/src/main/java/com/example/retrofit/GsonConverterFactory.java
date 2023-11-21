@@ -1,11 +1,12 @@
 package com.example.retrofit;
 
 import androidx.annotation.Nullable;
+
+import com.example.retrofit.adapter.Converter;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonWriter;
-
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
@@ -32,7 +33,7 @@ public class GsonConverterFactory extends Converter.Factory {
     }
 
     @Override
-    Converter<?, RequestBody> requestBodyConverter(Type type) {
+    public Converter<?, RequestBody> requestBodyConverter(Type type) {
         //通过Type 转换成Gson的TypeAdapter
         //具体类型的json转换依赖于这个TypeAdapter
         TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));

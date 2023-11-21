@@ -1,7 +1,6 @@
 package com.example.retrofit;
 
 import androidx.annotation.Nullable;
-
 import java.lang.reflect.Array;
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
@@ -10,6 +9,19 @@ import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
 
 public class Utils {
+
+    public static Type getParameterUpperBound(int index, ParameterizedType type) {
+        Type[] types = type.getActualTypeArguments();
+        if (index < 0 || index >= types.length) {
+            throw new IllegalArgumentException(
+                    "Index " + index + " not in range [0," + types.length + ") for " + type);
+        }
+        Type paramType = types[index];
+        if (paramType instanceof WildcardType) {
+            return ((WildcardType) paramType).getUpperBounds()[0];
+        }
+        return paramType;
+    }
 
     /**
      * 在说到泛型类型参数时，要先说一下Type接口，Type接口只有一个实现类Class，但是有四个子接口，这四个Type子接口描述了Java泛型的四种形式。分别是：
@@ -24,7 +36,7 @@ public class Utils {
      * @param type
      * @return
      */
-    static Class<?> getRawType(Type type) {
+    public static Class<?> getRawType(Type type) {
         checkNotNull(type, "type == null");
 
         if (type instanceof Class<?>) {

@@ -1,8 +1,8 @@
 package com.example.retrofit
 
+import com.example.retrofit.adapter.NetCallAdapterFactory
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
-import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
@@ -23,15 +23,12 @@ object ApiManager {
             builder.build()
     }
 
-//    val retrofitBuilder by lazy {
-//        Retrofit.Builder()
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(mOkhttpClient)
-//    }
+    val retrofit: Retrofit by lazy {
+        Retrofit(mOkhttpClient, GsonConverterFactory(Gson()), NetCallAdapterFactory())
+    }
 
     fun <T> create(cls: Class<T>, baseUrl: String): T {
-        return Retrofit(mOkhttpClient, GsonConverterFactory(Gson())).createService(cls)
-//        return retrofitBuilder.baseUrl(baseUrl).build().create(cls)
+        return retrofit.create(cls)
     }
 
 }

@@ -1,6 +1,5 @@
 package com.example.retrofit
 
-import android.telecom.Call
 import com.example.retrofit.http.GET
 
 /**
@@ -22,5 +21,5 @@ interface IHomeService {
      * banner
      */
     @GET(Api.BANNER)
-    suspend fun getBanner(): Call
+    suspend fun getBanner(): NetCall<List<BannerData>>
 }
