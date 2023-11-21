@@ -1,5 +1,6 @@
 package com.example.retrofit
 
+import com.example.retrofit.Api.Companion.SERVER_ADDRESS_RELEASE
 import com.example.retrofit.adapter.NetCallAdapterFactory
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
@@ -24,10 +25,10 @@ object ApiManager {
     }
 
     val retrofit: Retrofit by lazy {
-        Retrofit(mOkhttpClient, GsonConverterFactory(Gson()), NetCallAdapterFactory())
+        Retrofit(SERVER_ADDRESS_RELEASE, mOkhttpClient, GsonConverterFactory(Gson()), NetCallAdapterFactory())
     }
 
-    fun <T> create(cls: Class<T>, baseUrl: String): T {
+    fun <T> create(cls: Class<T>): T {
         return retrofit.create(cls)
     }
 

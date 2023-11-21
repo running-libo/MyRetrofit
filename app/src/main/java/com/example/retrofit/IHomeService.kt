@@ -10,7 +10,7 @@ import com.example.retrofit.http.GET
 interface IHomeService {
 
     companion object {
-        val instance = ApiManager.create(IHomeService::class.java, Api.SERVER_ADDRESS_RELEASE)
+        val instance = ApiManager.create(IHomeService::class.java)
 
         fun invoke(): IHomeService {
             return instance

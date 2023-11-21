@@ -17,14 +17,17 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 public class Retrofit {
+    private String mBaseUrl;
     private OkHttpClient mOkHttpClient;
     private Converter.Factory mConverterFactory;
     private NetCallAdapterFactory mCallAdapterFactory;
 
     public Retrofit(
+            String baseUrl,
             OkHttpClient okHttpClient,
             Converter.Factory converterFactory,
             NetCallAdapterFactory callAdapterFactory) {
+        this.mBaseUrl = baseUrl;
         this.mOkHttpClient = okHttpClient;
         this.mConverterFactory = converterFactory;
         this.mCallAdapterFactory = callAdapterFactory;
@@ -63,7 +66,7 @@ public class Retrofit {
      */
     private Object parseGet(Method method, String url) {
         Request request = new Request.Builder()
-                .url(url)
+                .url(mBaseUrl+url)
                 .get()
                 .build();
         Call call = mOkHttpClient.newCall(request);
@@ -85,7 +88,7 @@ public class Retrofit {
             //这个泛型的类型即为需要解析的Entity类型
             RequestBody requestBody = requestBodyConverter(genericParameterTypes[0]).convert(args[0]);
             Request request = new Request.Builder()
-                    .url(url)
+                    .url(mBaseUrl+url)
                     .post(requestBody)
                     .build();
             Call call = mOkHttpClient.newCall(request);
