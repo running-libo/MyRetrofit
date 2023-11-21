@@ -1,4 +1,4 @@
-package com.example.retrofit;
+package com.example.retrofit.call;
 
 /**
  * 统一的网络请求回调

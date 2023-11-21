@@ -1,4 +1,4 @@
-package com.example.retrofit;
+package com.example.retrofit.call;
 
 /**
  * 请求回调处理接口

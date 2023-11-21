@@ -1,8 +1,7 @@
-package com.example.retrofit;
+package com.example.retrofit.adapter;
 
 import androidx.annotation.Nullable;
 
-import com.example.retrofit.adapter.Converter;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;

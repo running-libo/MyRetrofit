@@ -1,5 +1,6 @@
 package com.example.retrofit
 
+import com.example.retrofit.call.NetCall
 import com.example.retrofit.http.GET
 
 /**

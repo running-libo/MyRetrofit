@@ -3,6 +3,7 @@ package com.example.retrofit
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import com.example.retrofit.call.NetCallback
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -12,7 +13,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         lifecycleScope.launch {
-            IHomeService.instance.getBanner().execute(object: NetCallback<List<BannerData>> {
+            IHomeService.instance.getBanner().execute(object:
+                NetCallback<List<BannerData>> {
                 override fun onFailure(e: Exception?) {
 
                 }

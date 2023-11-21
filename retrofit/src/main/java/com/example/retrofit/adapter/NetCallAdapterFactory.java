@@ -1,6 +1,6 @@
 package com.example.retrofit.adapter;
 
-import com.example.retrofit.NetCall;
+import com.example.retrofit.call.NetCall;
 import com.example.retrofit.Retrofit;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
