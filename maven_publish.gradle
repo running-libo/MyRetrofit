@@ -1,0 +1,53 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'io.github.running-libo'  //sonatype平台创建的groupId
+                artifactId = project.name
+                version = '1.0.1'  //库版本名
+
+                project.ext["signing.keyId"] = "7B4CA755"  //GPG指纹后8位/秘钥标识
+                project.ext["signing.password"] = "18380438200"  //GPG密码
+                project.ext["signing.secretKeyRingFile"] = "/Users/libo/myfiles/maven_gpg/my-private-key.gpg" //GPG私钥
+
+                pom {
+                    name = "Retrofit"
+                    description = "自写Retrofit框架"
+                    url = "https://github.com/running-libo"  //github主页地址
+                    licenses {
+                        license {
+                            name = "The Apache License, Version 2.0"
+                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        }
+                    }
+                    scm {
+                        connection = "scm:git@github.com:running-libo/MyRetrofit.git"   //后面为github主页地址
+                        developerConnection = "scm:git@github.com:running-libo/MyRetrofit.git"  //后面为github主页地址
+                        url = "https://github.com/running-libo/MyRetrofit.git" //github主页地址
+                    }
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                name = 'sonatypeRepository'
+//                url = "https://s01.oss.sonatype.org/content/repositories/snapshots/" //快照上传地址
+                url = "https://s01.oss.sonatype.org/content/repositories/releases/"  //正式仓库地址
+                // 凭证
+                credentials {
+                    //sonatype平台账号密码
+                    username = "libobo"
+                    password = "!Fanxi18380438200"
+                }
+            }
+        }
+    }
+    project.signing {
+        sign project.publishing.publications
+    }
+}
